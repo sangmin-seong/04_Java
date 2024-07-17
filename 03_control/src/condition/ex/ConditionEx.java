@@ -382,15 +382,46 @@ public class ConditionEx {
 //		if ((kor||eng||mat||soc||sci) <40 || average < 60) {"Fail"
 //		}else { "PASS"};
 		
-		Double average = (double)(kor + eng + mat + soc + sci)/5;
+		//40점 미만인 과목 검사
+		boolean flag = false;
 		
-		System.out.println(average);
+		String str = ""; // 빈칸 (자료형 : String, 내용x)
 		
+		if( kor < 40) {
+			flag = true;
+			str += "국어 ";
+		}
+		if( eng < 40) {
+			flag = true;
+			str += "영어 ";
+		}
+		if( mat < 40) {
+			flag = true;
+			str += "수학 ";
+		}
+		if( soc < 40) {
+			flag = true;
+			str += "사회 ";
+		}
+		if( sci < 40) {
+			flag = true;
+			str += "과학 ";
+		}
 		
-		if(average > 60) {System.out.println("PASS 점수 : %f / 100");
-		}else {System.out.println("FAIL");}
+		// 40점 미만 과목이 존재하는 경우
+		if(flag) {
+			System.out.printf("FAIL [40점 미만 과목 : %s]", str);
+			return;
+		}
 		
-	
+		// 평균 (double형 결과를 반환받기 위해 5.0 으로 나눔)
+		double average = (kor + eng + mat + soc + sci)/5.0;
+		
+		if(average < 60.0) {
+			System.out.printf("FAIL [점수 : %.1f (평균 미달)]", average);
+			return; // early return; (중간에 메서드를 종료)
+		}
+		System.out.printf("PASS [점수 : %.1f / 100]", average);
 	}
 	
 }	
