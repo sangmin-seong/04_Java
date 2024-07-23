@@ -3,7 +3,7 @@ package student.service;
 import java.util.Random;
 
 import student.dto.StudentDTO;
-import student.view.StudentDTD;
+import student.view.StudentView;
 
 // 기능 제공용 클래스
 // 비즈니스 로직 == 업무 기능
@@ -124,15 +124,48 @@ public class StudentService {
 		return null;
 	}
 
-	public StudentDTO updateInform(int index) {
+	
+	/**
+	 * 전달받은 index가 students 범위 내인지
+	 * + 정상 범위라면 해당 index가 학생 객체를 참조하는지 인
+	 */
+	public int checkIndex(int index) {
+		// 입력받은 index가 정상인지 판별
+					// 1 == 범위 초과
+					// 2 == 학생없음
+					// 3 == 정상
+		if(index < 0 || index >= students.length) return 1;
+			
+		if(students[index] == null) return 2;
 		
-		if( index < 0 || index >= students.length ) {
-			return null;
-		}
-		
-		return students[index];
+		return 3;
 	}
+	
+	/**
+	 * 전달받은 index 번째 학생의 점수 수정
+	 * @param index
+	 * @param scores
+	 */
+	public void updateScores(int index, StudentDTO other) {
+		
+		// 객체 배열 : 객체 참조형 변수를 묶음으로 다루는 것
+		
+		// students[index] 번째 저장된 주소 얕은 복사
+		StudentDTO s = students[index];
+		
+		s.setHtml(other.getHtml());
+		s.setCss(other.getCss());
+		s.setJs(other.getJs());
+		s.setJava(other.getJava());
+		
+		return; // 안써도 컴파일러가 추가해줌
+	}
+	
+	
+	
 
+
+	
 	public StudentDTO score(String targetName) {
 		for(StudentDTO std : students) {
 			
@@ -145,10 +178,74 @@ public class StudentService {
 		return null;
 	}
 
-	public StudentDTD average() {
+	
+	
+	/**
+	 * 평균 최대 최소 구하기
+	  * @return 
+		최고점 : 짱구(85.4)
+		최저점 : 맹구(61.5)
+	 */
+	public String selectMaxMin() {
 		
-		return null;
+		double maxAverage = 0;
+		double minAverage = 0;
+		String maxName = null;
+		String minName = null;
+		
+		for(StudentDTO std : students) {
+			
+			if(std == null) break;
+			
+			
+			int sum = std.getJava() + std.getCss() + std.getHtml() + std.getJs();
+			
+			double average = sum/4;
+	
+		
+			if(maxAverage == 0) {
+				maxAverage = average;
+				minAverage = average;
+				maxName = std.getName();
+				continue;
+			}
+			
+			if(average > maxAverage) { 
+				maxAverage = average;
+				maxName = std.getName();
+			}
+			if(average < minAverage) {
+				minAverage = average;
+				minName = std.getName();
+			}
+		}
+		String result
+			= String.format("최고점 : %s(%.1f)\n최저점 : %s(%.1f)\n",
+				maxName, maxAverage, minName, minAverage);
+		
+		return result;
+
+
 	}
+
+	
+	/*
+	 * int[] arr = {50,30,10,70,40};
+	 * 
+	 * int max = 0; // 최대값을 저장할 변수 int min = 0; // 최소값을 저장할 변수
+	 * 
+	 * for(int i = 0; i < arr.length; i++) { if(i == 0) { // 맨 처음 max = arr[i]; min
+	 * = arr[i]; continue; }
+	 * 
+	 * // 최대 값 비교 if(max < arr[i]) max = arr[i];
+	 * 
+	 * // 최소 값 비교 if(min > arr[i]) min = arr[i];
+	 * 
+	 * } System.out.println("max : " + max); System.out.println("min : " + min);
+	 */
+	
+
+	
 	
 	
 	
