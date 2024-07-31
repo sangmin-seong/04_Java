@@ -23,4 +23,6 @@ public class UserException extends /*RunTime*/Exception{
 	public UserException(String message) { // 매개변수 생성자
 		
 	}
+	
+	
 }
