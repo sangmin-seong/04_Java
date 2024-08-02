@@ -64,7 +64,7 @@ public class FileService {
 		// C:\io_test\20240731 폴더 경로의 폴더를 관리
 		File directory = new File("/io_test/20240731"); 
 		
-		System.out.println(directory.getPath());
+//		System.out.println(directory.getPath());
 		
 		System.out.println("폴더 존재유무 : " + directory.exists());
 		
