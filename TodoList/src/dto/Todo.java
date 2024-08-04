@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +23,8 @@ public class Todo implements Serializable { // 직렬화
 	private String title;			// 할일 제목
 	private String detail;			// 상세 내용
 	private boolean complete;		// 완료 여부
-	private LocalDateTime regDate;  // 등록 날짜
+	private LocalDateTime regDate;   // 등록 날짜
+	
 	
 	// java.time 패키지
 	// LocalDateTime : 날짜, 시간을 나타내는 클래스

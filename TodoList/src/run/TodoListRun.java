@@ -1,6 +1,5 @@
 package run;
 
-import view.MemberView;
 import view.TodoListView;
 
 public class TodoListRun {
