@@ -14,11 +14,8 @@ public interface TodoListService {
 	public abstract	List<Todo> getTodoList();
 	
 	
-	public List<Todo> selectTitle(String searchTitle);
+	public List<Todo> selectIndex(int input) ;
 		
-	public String completeTodo(Todo target, String complete) throws IOException;
-		
-	public String updateDetail(Todo target, String detail) throws IOException;
-	
-	public String removeMember(Todo target) throws IOException;
+	String removeMember(int input) throws IOException;
+
 }

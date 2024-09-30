@@ -72,4 +72,9 @@ public class TodoListDaoImpl implements TodoListDao{
 			if(oos != null) oos.close();
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return TodoList.get(0).getTitle();
+	}
 }

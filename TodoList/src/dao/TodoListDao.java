@@ -18,4 +18,7 @@ public interface TodoListDao {
 	
 	public void saveFile() throws IOException;
 	
+	@Override
+	String toString();
+	
 }
